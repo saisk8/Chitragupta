@@ -89,18 +89,68 @@ window.onload = () => {
       .attr('x', d => d * (4.5 * CELL_SIZE) + dx)
       .text(d => d3.timeFormat('%b')(new Date(0, d + 1, 0)));
   }
-  function addEventListner() {
-    const btns = document.querySelectorAll('button');
-    for (let i = 0; i < btns.length; i += 1) {
-      btns[i].addEventListener('click', update, false);
-    }
-  }
-  addEventListner();
+
+  let mCount = 0;
+  let sCount = 0;
+  document.getElementById('mminus').addEventListener(
+    'click',
+    () => {
+      mCount -= 1;
+      document.getElementById('mvalue').innerHTML = mCount < 1 ? 'M' : mCount;
+    },
+    false
+  );
+  document.getElementById('mplus').addEventListener(
+    'click',
+    () => {
+      mCount += 1;
+      document.getElementById('mvalue').innerHTML = mCount < 1 ? 'M' : mCount;
+    },
+    false
+  );
+  document.getElementById('sminus').addEventListener(
+    'click',
+    () => {
+      sCount -= 1;
+      document.getElementById('svalue').innerHTML = sCount < 1 ? 'M' : sCount;
+    },
+    false
+  );
+  document.getElementById('splus').addEventListener(
+    'click',
+    () => {
+      sCount += 1;
+      document.getElementById('svalue').innerHTML = sCount < 1 ? 'M' : sCount;
+    },
+    false
+  );
+  document.getElementById('log').addEventListener(
+    'click',
+    () => {
+      axios
+        .post(`${process.env.HOST}/new`, {
+          date: new Date(),
+          sms: document.getElementById('svalue').innerHTML,
+          mms: document.getElementById('mvalue').innerHTML
+        })
+        .then(response => {
+          document.getElementById('err').innerHTML = response.data;
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
+    },
+    false
+  );
+  document.getElementById('data').addEventListener(
+    'click',
+    () => {
+      window.location.href = '/data';
+    },
+    false
+  );
   const yearFormat = d3.timeFormat('%Y');
   const year = yearFormat(new Date());
-  const data = {
-    maxCount: 2,
-    dates: [new Date()]
-  };
   createHeatMap(data, year);
 };
