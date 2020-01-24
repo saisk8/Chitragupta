@@ -29,7 +29,9 @@
         <button type="button" class="btn btn-outline-danger circle" id="splus">+</button>
       </div>
     </div>
-    <button type="button" class="btn btn-outline-success">Log</button>
+    <button type="button" class="btn btn-outline-info" id="data">Get Data</button>
+    <button type="button" class="btn btn-outline-success" id="log">Log</button> <br />
+    <p id="err"></p>
     <div class="results">
       <div class="js-heatmap"></div>
       <div class="js-months"></div>
@@ -51,6 +53,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/index.js"></script>
   </body>
 </html>
