@@ -26,7 +26,6 @@ window.onload = () => {
       .attr('class', 'color');
 
     // Add a grid for each day between the date range.
-    const dates = Object.keys(data.dates);
     const rect = heatmapSvg.append('g').attr('transform', `translate(${dx},0)`);
 
     // Add year label.
@@ -127,14 +126,21 @@ window.onload = () => {
   document.getElementById('log').addEventListener(
     'click',
     () => {
+      const sms = document.getElementById('svalue').innerHTML;
+      const mms = document.getElementById('mvalue').innerHTML;
+      if (sms === 'S' || mms === 'M') {
+        document.getElementById('err').innerHTML = 'You did not do anything';
+        return;
+      }
       axios
-        .post(`${process.env.HOST}/new`, {
+        .post('/new', {
+          log: 'yes',
           date: new Date(),
-          sms: document.getElementById('svalue').innerHTML,
-          mms: document.getElementById('mvalue').innerHTML
+          sms,
+          mms
         })
         .then(response => {
-          document.getElementById('err').innerHTML = response.data;
+          document.getElementById('err').innerHTML = JSON.stringify(response.data);
         })
         .catch(error => {
           // eslint-disable-next-line no-console
@@ -150,7 +156,7 @@ window.onload = () => {
     },
     false
   );
-  const yearFormat = d3.timeFormat('%Y');
-  const year = yearFormat(new Date());
-  createHeatMap(data, year);
+  // const yearFormat = d3.timeFormat('%Y');
+  // const year = yearFormat(new Date());
+  // createHeatMap(data, year);
 };
