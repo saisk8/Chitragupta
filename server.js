@@ -34,17 +34,17 @@ app.get('/', (request, response) => {
 app.get('/data', (request, response) => {
   client.connect(err => {
     console.log('Connected correctly to server');
-    let res = [];
-    let stream = client
+    const res = [];
+    const stream = client
       .db('sm')
-      .collection('smc')
+      .collection('smc-new')
       .find()
       .stream();
     stream.on('data', doc => {
       res.push(doc);
     });
-    stream.on('error', err => {
-      console.log(err);
+    stream.on('error', err1 => {
+      console.log(err1);
     });
     stream.on('end', () => {
       console.log('All done!');
@@ -58,11 +58,11 @@ app.post('/new', (request, response) => {
     console.log('Connected correctly to server');
     db = client
       .db('sm')
-      .collection('smc')
-      .insertOne(request.body, err => {
-        if (err) {
-          console.log(err);
-          return response.send(JSON.stringify(err));
+      .collection('smc-new')
+      .insertOne(request.body, err1 => {
+        if (err1) {
+          console.log(err1);
+          return response.send(JSON.stringify(err1));
         }
         return response.send('pass');
       });
