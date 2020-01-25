@@ -16,46 +16,8 @@ body {
   stroke-width: 3px;
 }
 
-.color0 {
-  fill: #d6e685;
-}
-.color1 {
-  fill: #44a340;
-}
-.color2 {
-  fill: #28752d;
-}
-.color3 {
-  fill: #1e6823;
-}
-.color4 {
-  fill: #365e2f;
-}
-.color5 {
-  fill: #144e12;
-}
-
-.hidden {
-  display: none;
-}
-
 .title {
   margin-top: 77px;
-}
-
-.custom-input-group {
-  width: 500px;
-  text-align: center;
-  display: inline-block;
-  margin: 0 auto;
-}
-
-.results {
-  width: 800px;
-  display: block;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .btn.active.focus,
