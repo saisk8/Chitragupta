@@ -87,13 +87,9 @@ window.onload = () => {
       axios
         .get('/data')
         .then(response => {
-          console.log(response.data);
           let content = '';
           if (response.data.length) {
-            console.log('Here');
-            response.data.forEach(d => {
-              content += createCard(d);
-            });
+            content += createCard(d);
           } else {
             content = `<h3 class='text-success'>Nice going, keep it up!</h3>`;
           }
