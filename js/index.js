@@ -36,7 +36,7 @@ window.onload = () => {
     'click',
     () => {
       sCount -= 1;
-      document.getElementById('svalue').innerHTML = sCount < 1 ? 'M' : sCount;
+      document.getElementById('svalue').innerHTML = sCount < 1 ? 'S' : sCount;
     },
     false
   );
@@ -44,7 +44,7 @@ window.onload = () => {
     'click',
     () => {
       sCount += 1;
-      document.getElementById('svalue').innerHTML = sCount < 1 ? 'M' : sCount;
+      document.getElementById('svalue').innerHTML = sCount < 1 ? 'S' : sCount;
     },
     false
   );
@@ -53,7 +53,7 @@ window.onload = () => {
     () => {
       const sms = document.getElementById('svalue').innerHTML;
       const mms = document.getElementById('mvalue').innerHTML;
-      if (sms === 'S' || mms === 'M') {
+      if (sms === 'S' && mms === 'M') {
         document.getElementById(
           'err'
         ).innerHTML = `<h5 class='text-info'>You did not do anything -_-</h5>`;
